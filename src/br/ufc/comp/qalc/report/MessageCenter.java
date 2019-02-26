@@ -1,5 +1,8 @@
 package br.ufc.comp.qalc.report;
 
+import br.ufc.comp.qalc.report.messages.Message;
+import br.ufc.comp.qalc.report.messages.MessageType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +29,7 @@ public final class MessageCenter {
     }
 
     public static void deliver(Message message) {
-        List<MessageConsumer> list = mapping.get(message.type);
+        List<MessageConsumer> list = mapping.get(message.getType());
 
         for (MessageConsumer consumer : list) {
             consumer.consume(message);

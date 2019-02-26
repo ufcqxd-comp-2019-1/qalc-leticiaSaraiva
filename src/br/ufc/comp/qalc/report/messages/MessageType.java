@@ -1,4 +1,4 @@
-package br.ufc.comp.qalc.report;
+package br.ufc.comp.qalc.report.messages;
 
 public enum MessageType {
     ERROR,
