@@ -8,7 +8,7 @@ public class NumberToken extends Token {
     }
 
     @Override
-    public void interpretAtributes() {
+    public void interpretAttributes() {
         numericValue = Double.parseDouble(stringValue);
         stringValue = null;
     }
