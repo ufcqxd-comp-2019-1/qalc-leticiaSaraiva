@@ -1,4 +1,4 @@
 package br.ufc.comp.qalc.report;
 
-public class ScanningReporter {
+public class ScanningReporter implements MessageReporter {
 }
