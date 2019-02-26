@@ -9,7 +9,9 @@ public class NumberToken extends Token {
 
     @Override
     public void interpretAttributes() {
-        numericValue = Double.parseDouble(stringValue);
-        stringValue = null;
+        if(stringValue != null) {
+            numericValue = Double.parseDouble(stringValue);
+            stringValue = null;
+        }
     }
 }
