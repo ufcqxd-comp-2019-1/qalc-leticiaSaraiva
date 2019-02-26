@@ -1,11 +1,10 @@
 package br.ufc.comp.qalc.frontend;
 
 import br.ufc.comp.qalc.frontend.token.Token;
-import br.ufc.comp.qalc.report.MessageProducer;
 
 import java.io.IOException;
 
-public class Scanner implements MessageProducer {
+public class Scanner {
 
     protected Token currentToken;
     protected Source source;

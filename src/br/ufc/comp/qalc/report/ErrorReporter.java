@@ -1,4 +1,4 @@
 package br.ufc.comp.qalc.report;
 
-public class ErrorReporter implements MessageReporter {
+public class ErrorReporter implements MessageConsumer {
 }
