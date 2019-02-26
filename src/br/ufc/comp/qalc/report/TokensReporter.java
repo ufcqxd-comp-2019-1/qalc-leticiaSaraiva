@@ -18,6 +18,7 @@ public class TokensReporter extends BasicReporter {
         if(message instanceof NewTokenMessage) {
             try {
                 // TODO Alterar para informar também os lexemas (apenas os que forem necessários).
+                //      Formato: (ID, "lexema") ou (ID)
                 output.write(String.format("(%s)\n", ((NewTokenMessage)message).getToken().getTokenIdentifier()));
             } catch (IOException e) {
                 reportFailure(e);
