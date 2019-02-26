@@ -26,7 +26,7 @@ public class Token {
         stringValue = null;
     }
 
-    public void interpretAtributes() {
+    public void interpretAttributes() {
         return;
     }
 }
