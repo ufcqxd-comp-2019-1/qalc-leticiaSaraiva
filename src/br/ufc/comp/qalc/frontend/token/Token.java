@@ -7,7 +7,7 @@ public class Token {
     protected long columnEnd;
     protected long lineNum;
 
-    public Token(long line, long start, String value) throws IllegalArgumentException {
+    protected Token(long line, long start, String value) throws IllegalArgumentException {
         if(value == null || value.length() == 0)
             throw new IllegalArgumentException("O lexema não pode ser vazio.");
 
