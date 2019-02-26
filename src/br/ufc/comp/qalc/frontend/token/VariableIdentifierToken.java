@@ -11,4 +11,9 @@ public class VariableIdentifierToken extends Token {
         // TODO Se o lexema ainda existir e ainda não tiver sido interpretado, descartar o `$`.
     }
 
+    @Override
+    public String getTokenIdentifier() {
+        return "VARID";
+    }
+
 }

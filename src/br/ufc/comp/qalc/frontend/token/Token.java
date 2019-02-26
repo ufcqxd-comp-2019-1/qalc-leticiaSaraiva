@@ -1,6 +1,6 @@
 package br.ufc.comp.qalc.frontend.token;
 
-public class Token {
+public abstract class Token {
     protected String stringValue;
 
     protected long columnStart;
@@ -29,4 +29,17 @@ public class Token {
     public void interpretAttributes() {
         return;
     }
+
+    /**
+     * Deve retornar a {@link String} representando o identificador do token,
+     * segundo as convenções de nomenclatura definidas na especificação
+     * da linguagem.
+     *
+     * IMPORTANTE: Não incluir os parênteses!
+     *
+     * EXEMPLO: (PLUS) => "PLUS".
+     *
+     * @return identificador do token.
+     */
+    public abstract String getTokenIdentifier();
 }

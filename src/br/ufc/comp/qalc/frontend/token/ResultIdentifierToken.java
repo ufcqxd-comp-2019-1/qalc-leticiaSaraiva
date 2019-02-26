@@ -13,4 +13,9 @@ public class ResultIdentifierToken extends Token {
         //      atribuindo ao campo `resultNumber`.
     }
 
+    @Override
+    public String getTokenIdentifier() {
+        return "RESID";
+    }
+
 }

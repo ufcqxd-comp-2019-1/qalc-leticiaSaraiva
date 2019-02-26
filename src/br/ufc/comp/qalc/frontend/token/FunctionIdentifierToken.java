@@ -13,4 +13,9 @@ public class FunctionIdentifierToken extends Token {
         }
     }
 
+    @Override
+    public String getTokenIdentifier() {
+        return "FUNCID";
+    }
+
 }

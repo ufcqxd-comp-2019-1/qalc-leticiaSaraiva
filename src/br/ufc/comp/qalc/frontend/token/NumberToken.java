@@ -14,4 +14,9 @@ public class NumberToken extends Token {
             stringValue = null;
         }
     }
+
+    @Override
+    public String getTokenIdentifier() {
+        return "NUML";
+    }
 }
