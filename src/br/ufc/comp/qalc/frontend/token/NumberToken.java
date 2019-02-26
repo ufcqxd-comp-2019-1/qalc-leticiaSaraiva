@@ -5,7 +5,11 @@ public class NumberToken extends Token {
 
     public NumberToken(long line, long start, String value) throws IllegalArgumentException {
         super(line, start, value);
+    }
 
-        // FIXME Calcular valor numérico e apagar lexema
+    @Override
+    public void interpretAtributes() {
+        numericValue = Double.parseDouble(stringValue);
+        stringValue = null;
     }
 }
