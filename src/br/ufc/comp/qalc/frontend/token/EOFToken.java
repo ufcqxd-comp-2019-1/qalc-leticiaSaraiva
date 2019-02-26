@@ -2,8 +2,7 @@ package br.ufc.comp.qalc.frontend.token;
 
 public class EOFToken extends Token {
     public EOFToken(long line, long start) {
-        this.columnStart = this.columnEnd = start;
-        this.lineNum = line;
+        super(line, start, start);
         this.stringValue = null;
     }
 }

@@ -18,6 +18,12 @@ public class Token {
         stringValue = value;
     }
 
+    protected Token(long line, long start, long end) {
+        columnStart = start;
+        columnEnd = end;
+        lineNum = line;
+    }
+
     public void interpretAtributes() {
         return;
     }
