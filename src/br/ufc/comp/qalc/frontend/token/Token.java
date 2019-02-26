@@ -3,12 +3,17 @@ package br.ufc.comp.qalc.frontend.token;
 public class Token {
     protected String stringValue;
 
-    protected long positionStart;
-    protected long positionEnd;
+    protected long columnStart;
+    protected long columnEnd;
+    protected long lineNum;
 
-    public Token(long start, long end, String value) {
-        positionStart = start;
-        positionEnd = end;
+    public Token(long line, long start, String value) throws IllegalArgumentException {
+        if(value == null || value.length() == 0)
+            throw new IllegalArgumentException("O lexema não pode ser vazio.");
+
+        columnStart = start;
+        columnEnd = start + value.length() - 1;
+        lineNum = line;
 
         stringValue = value;
     }
