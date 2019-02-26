@@ -22,6 +22,8 @@ public class Token {
         columnStart = start;
         columnEnd = end;
         lineNum = line;
+
+        stringValue = null;
     }
 
     public void interpretAtributes() {
