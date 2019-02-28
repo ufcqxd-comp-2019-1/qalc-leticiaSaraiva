@@ -1,6 +1,5 @@
 package br.ufc.comp.qalc.report;
 
-import br.ufc.comp.qalc.report.messages.BasicReporter;
 import br.ufc.comp.qalc.report.messages.Message;
 
 import java.io.OutputStream;

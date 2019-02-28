@@ -1,6 +1,7 @@
-package br.ufc.comp.qalc.report.messages;
+package br.ufc.comp.qalc.report;
 
 import br.ufc.comp.qalc.report.MessageConsumer;
+import br.ufc.comp.qalc.report.messages.Message;
 
 import java.io.IOException;
 import java.io.OutputStream;
