@@ -4,6 +4,12 @@ import picocli.CommandLine;
 
 import java.io.File;
 
+/**
+ * Classe principal do interpretador.
+ *
+ * Contém a função {@link QALC.main} e as definições de interpretação
+ * dos parâmetros de execução.
+ */
 @CommandLine.Command(
         description = "Interpretador para a linguagem QALC.",
         headerHeading = "Uso:%n",
@@ -28,6 +34,9 @@ public class QALC {
     )
     boolean versionRequested = false;
 
+    /**
+     * Indica a última fase que o usuário deseja executar no interpretador.
+     */
     @CommandLine.Option(
             names = {"-s", "--stop-at"},
             paramLabel = "PHASE",
@@ -37,6 +46,9 @@ public class QALC {
     )
     InterpreterPass stopAt = InterpreterPass.RUNNER;
 
+    /**
+     * Indica o nível de detalhamento a ser usado no arquivo de saída, se solicitado.
+     */
     @CommandLine.Option(
             names = {"-o", "--output-verbosity"},
             paramLabel = "VERBOSITY",
@@ -46,6 +58,12 @@ public class QALC {
     )
     OutputVerbosity outputVerbosity = OutputVerbosity.ESSENTIAL;
 
+    /**
+     * Indica o arquivo de onde ler a entrada.
+     *
+     * O valor {@code null} significa que a entrada deve ser lida da
+     * entrada-padrão ({@code System.out}).
+     */
     @CommandLine.Parameters(
             paramLabel = "FILE",
             index = "0",

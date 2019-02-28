@@ -6,6 +6,11 @@ import br.ufc.comp.qalc.report.messages.NewTokenMessage;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * Classe especializada no relato de mensagens de reconhecimento de tokens.
+ *
+ * @see NewTokenMessage
+ */
 public class TokensReporter extends BasicReporter {
 
     public TokensReporter(OutputStream stream) {
