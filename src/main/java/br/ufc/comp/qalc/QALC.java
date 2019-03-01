@@ -1,8 +1,14 @@
 package br.ufc.comp.qalc;
 
+import br.ufc.comp.qalc.report.MessageCenter;
+import br.ufc.comp.qalc.report.TokensReporter;
+import br.ufc.comp.qalc.report.messages.MessageCategory;
 import picocli.CommandLine;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 /**
  * Classe principal do interpretador.
@@ -65,12 +71,21 @@ public class QALC {
      * entrada-padrão ({@code System.out}).
      */
     @CommandLine.Parameters(
-            paramLabel = "FILE",
+            paramLabel = "IN-FILE",
             index = "0",
             arity = "0..1",
-            description = "Informa o arquivo a ser usado como entrada. Caso não seja informado, lê da entrada-padrão."
+            description = "Informa o arquivo a ser usado como entrada. Caso não seja informado, " +
+                    "lê da entrada-padrão."
     )
     File readFrom = null;
+
+    @CommandLine.Option(
+            names = {"-d", "--dump-to"},
+            paramLabel = "OUT-FILE",
+            description = "Arquivo onde escrever a saída solicitada. Caso não seja informado, " +
+                    "escreve para a saída-padrão."
+    )
+    File outputTo = null;
 
     public static void main(String[] args) {
         QALC qalc = new QALC();
@@ -87,12 +102,35 @@ public class QALC {
                 // Alterar esta porção do código
                 // ---->
 
+                OutputStream outputToStream = qalc.outputTo == null ? System.out : new FileOutputStream(qalc.outputTo);
+
+                // WARNING: Apenas a última fase deve gerar saída.
+                switch (qalc.stopAt) {
+                    case LEXER:
+                        MessageCenter.registerConsumerFor(
+                                MessageCategory.SCANNING,
+                                new TokensReporter(outputToStream, qalc.outputVerbosity)
+                        );
+                        break;
+                    case PARSER:
+                        // TODO
+                        break;
+                    case SEMANTIC:
+                        // TODO
+                        break;
+                    case RUNNER:
+                        // TODO
+                        break;
+                }
+
+                // TODO Registrar os relatores de notas, alertas e erros.
+
                 // NOTE: A ordem em que a enumeração foi definida indica a progressão das fases.
                 //       Então, comparamos a posição dos valores para saber se a fase que deveríamos executar
                 //       está antes da fase em que o usuário deseja parar.
                 if (qalc.stopAt.ordinal() >= InterpreterPass.LEXER.ordinal()) {
                     // Fase de Análise Léxica deve ser executada
-                    // TODO
+                    // TODO Executar análise léxica
                 }
 
                 // <----
@@ -111,6 +149,21 @@ public class QALC {
             }
         } catch (CommandLine.ParameterException ex) {
             System.err.println(ex.getMessage());
+            ex.getCommandLine().usage(System.err);
+        } catch (FileNotFoundException ex) {
+            System.err.println("[!] Não foi possível abrir o arquivo de saída.");
+            if(qalc.outputTo != null) {
+                if (qalc.outputTo.isDirectory()) {
+                    System.err.println("\t:: O arquivo informado é um diretório.");
+                } else if(!qalc.outputTo.canWrite()) {
+                    System.err.println("\t:: O arquivo informado está protegido contra escrita.");
+                } else if(!qalc.outputTo.exists()) {
+                    System.err.println("\t:: O arquivo informado não existe e não pôde ser criado.");
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println("Não foi possível executar a ação solicitada.");
+            ex.printStackTrace();
         }
     }
 }
