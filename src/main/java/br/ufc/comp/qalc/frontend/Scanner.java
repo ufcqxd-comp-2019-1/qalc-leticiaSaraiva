@@ -6,51 +6,75 @@ import br.ufc.comp.qalc.frontend.token.Token;
 
 import java.io.IOException;
 
+/**
+ * Analisador Léxico da linguagem.
+ * <p>
+ * Funciona como uma fonte de tokens, de onde o Analisador Sintático
+ * deverá ler.
+ *
+ * @see Source
+ */
 public class Scanner {
 
+    /**
+     * Último token reconhecido.
+     */
     protected Token currentToken;
+    /**
+     * Fonte de caracteres de onde extrair os tokens.
+     */
     protected Source source;
 
-    public Scanner(Source sourceStream) throws IOException {
+    /**
+     * Constrói um Analisador Léxico a partir de uma fonte de caracteres.
+     *
+     * @param sourceStream Fonte a ser utilizada.
+     */
+    public Scanner(Source sourceStream) {
         // FIXME Lidar corretamente com as exceções.
         this.source = sourceStream;
-        this.source.rewind();
-        this.source.advance();
     }
 
+    /**
+     * Consome caracteres da fonte até que eles componham um lexema de
+     * um dos tokens da linguagem, coinstrói um objeto representando esse
+     * token associado ao lexema lido e o retorna.
+     *
+     * @return Token reconhecido.
+     * @throws IOException Caso haja problema na leitura da fonte.
+     */
     public Token getNextToken() throws IOException {
-        // TODO
+        // TODO Reconhecimento de tokens
 
-        if(source.getCurrentChar() == Source.EOF) {
+        if (source.getCurrentChar() == Source.EOF) {
             return new EOFToken(source.getCurrentLine(), source.getCurrentColumn());
-        } else if(Character.isDigit(source.getCurrentChar())) { // NumberToken
-                StringBuilder lexema = new StringBuilder();
+        } else if (Character.isDigit(source.getCurrentChar())) { // NumberToken
+            StringBuilder lexema = new StringBuilder();
 
-                long currentLine = source.getCurrentLine();
-                long lexemaStart = source.getCurrentColumn();
+            long currentLine = source.getCurrentLine();
+            long lexemeStart = source.getCurrentColumn();
 
-                do {
-                    lexema.append(source.getCurrentChar());
-                    source.advance();
-                } while(Character.isDigit(source.getCurrentChar()));
+            do {
+                lexema.append(source.getCurrentChar());
+                source.advance();
+            } while (Character.isDigit(source.getCurrentChar()));
 
-                String stringValue = lexema.toString();
+            String stringValue = lexema.toString();
 
-                return new NumberToken(currentLine, lexemaStart, stringValue);
+            return new NumberToken(currentLine, lexemeStart, stringValue);
         }
+
+        // TODO Recuperação de erros.
 
         return null;
     }
 
+    /**
+     * Obtém o último token reconhecido.
+     *
+     * @return O último token reconhecido.
+     */
     public Token getCurrentToken() {
         return currentToken;
     }
 }
-
-
-
-
-
-
-
-

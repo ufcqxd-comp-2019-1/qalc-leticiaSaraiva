@@ -31,28 +31,28 @@ public class TokensReporter extends BasicReporter {
     /**
      * Caso a mensagem recebida seja do tipo {@link NewTokenMessage},
      * reporta o reconhecimento do token associado.
-     *
+     * <p>
      * A depender do nível de verbosidade solicitado pelo usuário, a saída
      * possui diferentes formatos:
      *
      * <dl>
-     *     <dt>{@link OutputVerbosity#ESSENTIAL}</dt>
-     *     <dd>- {@code (ID)}</dd>
-     *     <dt>{@link OutputVerbosity#ADDITIONAL_INFO}</dt>
-     *     <dd>- {@code (ID, "lexema")}</dd>
-     *     <dt>{@link OutputVerbosity#EVERYTHING}</dt>
-     *     <dd>- {@code (ID, "lexema", L: 1, C: 1-2)}</dd>
+     * <dt>{@link OutputVerbosity#ESSENTIAL}</dt>
+     * <dd>- {@code (ID)}</dd>
+     * <dt>{@link OutputVerbosity#ADDITIONAL_INFO}</dt>
+     * <dd>- {@code (ID, "lexema")}</dd>
+     * <dt>{@link OutputVerbosity#EVERYTHING}</dt>
+     * <dd>- {@code (ID, "lexema", L: 1, C: 1-2)}</dd>
      * </dl>
      *
      * @param message A mensagem a consumir.
      */
     @Override
     public void consume(Message message) {
-        if(message instanceof NewTokenMessage) {
+        if (message instanceof NewTokenMessage) {
             try {
                 // TODO Alterar para aumentar as informações de acordo com a variável `verbosity`.
                 //      (Ver Javadoc desta função.)
-                output.write(String.format("(%s)\n", ((NewTokenMessage)message).getToken().getTokenIdentifier()));
+                output.write(String.format("(%s)\n", ((NewTokenMessage) message).getToken().getTokenIdentifier()));
             } catch (IOException e) {
                 reportFailure(e);
             }

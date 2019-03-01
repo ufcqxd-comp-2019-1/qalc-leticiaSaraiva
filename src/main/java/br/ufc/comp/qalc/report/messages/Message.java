@@ -3,7 +3,7 @@ package br.ufc.comp.qalc.report.messages;
 /**
  * Representa uma mensagem a ser enviada através do {@link br.ufc.comp.qalc.report.MessageCenter}
  * e recebida por um {@link br.ufc.comp.qalc.report.MessageConsumer}.
- *
+ * <p>
  * As mensagens funcionam como um canal de informação de eventos ocorridos no
  * funcionamento do interpretador, de forma que a responsabilidade de reportar esses
  * eventos (como erros, alertas, etc.) seja delegado a outras classes que não
@@ -17,9 +17,9 @@ public class Message {
      * Constrói uma mensagem especificando a categoria e o conteúdo textual.
      *
      * @param category Categoria de evento que originou a mensagem.
-     * @param content Conteúdo textual associado à mensagem.
+     * @param content  Conteúdo textual associado à mensagem.
      */
-    public Message(MessageCategory category, String content){
+    public Message(MessageCategory category, String content) {
         this.category = category;
         this.content = content;
     }

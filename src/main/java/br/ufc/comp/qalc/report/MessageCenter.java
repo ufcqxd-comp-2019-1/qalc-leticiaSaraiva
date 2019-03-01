@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Funciona como intermediário entre produtores de mensagens e consumidores.
- *
+ * <p>
  * Tem como responsabilidade viabilizar a delegação de responsabilidade de
  * relato de eventos ocorridos no sistema a outras classes através de
  * objetos {@link Message}.
@@ -19,7 +19,8 @@ public final class MessageCenter {
      * Construtor privado para impedir que um objeto desta classe
      * seja instanciado.
      */
-    private MessageCenter() {}
+    private MessageCenter() {
+    }
 
     /**
      * Armazena todos os consumidores registrados, categorizados pelo
@@ -41,7 +42,7 @@ public final class MessageCenter {
     public static void registerConsumerFor(MessageCategory category, MessageConsumer consumer) {
         List<MessageConsumer> list = mapping.get(category);
 
-        if(list == null) {
+        if (list == null) {
             list = new ArrayList<>();
             list.add(consumer);
             mapping.put(category, list);

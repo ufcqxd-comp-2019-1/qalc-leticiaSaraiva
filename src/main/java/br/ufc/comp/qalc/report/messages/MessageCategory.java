@@ -5,18 +5,32 @@ package br.ufc.comp.qalc.report.messages;
  * dentro do interpretador.
  */
 public enum MessageCategory {
-    /** Notas ao usuário. Representam observações não-críticas. */
+    /**
+     * Notas ao usuário. Representam observações não-críticas.
+     */
     NOTE,
-    /** Avisos ao usuário. Representam observações que podem afetar a interpretação da entrada. */
+    /**
+     * Avisos ao usuário. Representam observações que podem afetar a interpretação da entrada.
+     */
     WARNING,
-    /** Erros ao usuário. Representam problemas críticos que impedem a interpretação da entrada. */
+    /**
+     * Erros ao usuário. Representam problemas críticos que impedem a interpretação da entrada.
+     */
     ERROR,
-    /** Informações da Análise Léxica. */
+    /**
+     * Informações da Análise Léxica.
+     */
     SCANNING,
-    /** Informações da Análise Sintática. */
+    /**
+     * Informações da Análise Sintática.
+     */
     PARSING,
-    /** Informações da Análise Semântica. */
+    /**
+     * Informações da Análise Semântica.
+     */
     SEMANTICS,
-    /** Informações da Execução */
+    /**
+     * Informações da Execução
+     */
     RUNTIME;
 }

@@ -5,7 +5,7 @@ import picocli.CommandLine;
 /**
  * Informa à biblioteca de manipulação de parâmetros qual texto de versão
  * exibir quando solicitado.
- *
+ * <p>
  * ATENÇÃO: Este arquivo não deve ser alterado!
  */
 public final class VersionProvider implements CommandLine.IVersionProvider {

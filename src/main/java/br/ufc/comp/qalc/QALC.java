@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 /**
  * Classe principal do interpretador.
- *
+ * <p>
  * Contém a função {@link QALC#main(String[])} e as definições de interpretação
  * dos parâmetros de execução.
  */
@@ -67,7 +67,7 @@ public class QALC {
 
     /**
      * Indica o arquivo de onde ler a entrada.
-     *
+     * <p>
      * O valor {@code null} significa que a entrada deve ser lida da
      * entrada-padrão ({@code System.out}).
      */
@@ -142,8 +142,8 @@ public class QALC {
             System.err.println("[!] No máximo um arquivo deve ser informado como entrada.");
             System.err.println("\tParâmetros ignorados:");
 
-            for(String param : cmd.getUnmatchedArguments()) {
-                System.err.println("\t:: "+param);
+            for (String param : cmd.getUnmatchedArguments()) {
+                System.err.println("\t:: " + param);
             }
             System.err.println();
 
@@ -155,12 +155,12 @@ public class QALC {
             ex.getCommandLine().usage(System.err);
         } catch (FileNotFoundException ex) {
             System.err.println("[!] Não foi possível abrir o arquivo de saída.");
-            if(qalc.outputTo != null) {
+            if (qalc.outputTo != null) {
                 if (qalc.outputTo.isDirectory()) {
                     System.err.println("\t:: O arquivo informado é um diretório.");
-                } else if(!qalc.outputTo.canWrite()) {
+                } else if (!qalc.outputTo.canWrite()) {
                     System.err.println("\t:: O arquivo informado está protegido contra escrita.");
-                } else if(!qalc.outputTo.exists()) {
+                } else if (!qalc.outputTo.exists()) {
                     System.err.println("\t:: O arquivo informado não existe e não pôde ser criado.");
                 }
             }

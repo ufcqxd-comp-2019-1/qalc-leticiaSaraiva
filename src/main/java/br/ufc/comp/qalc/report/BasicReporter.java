@@ -10,7 +10,7 @@ import java.io.OutputStreamWriter;
 /**
  * Classe base para todos as que funcionam como relatores das mensagens
  * recebidas via {@link MessageCenter}.
- *
+ * <p>
  * Contém funcionalidade básica e define um comportamento inicial.
  * Subclasses que desejam personalizar o texto exibido pelo consumo
  * de uma mensagem devem sobrescrever o método {@link #consume(Message)}.
@@ -45,7 +45,7 @@ public class BasicReporter implements MessageConsumer {
 
     /**
      * Comportamento padrão do consumo de mensagens.
-     *
+     * <p>
      * Redireciona à saída ({@link #output}) informações básicas sobre o
      * objeto {@code message} recebido.
      *
