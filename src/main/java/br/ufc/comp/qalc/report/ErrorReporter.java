@@ -13,14 +13,14 @@ import java.io.OutputStream;
  */
 public class ErrorReporter extends BasicReporter {
     /**
-     * @see BasicReporter
+     * @see BasicReporter#BasicReporter(OutputStream)
      */
     public ErrorReporter(OutputStream stream) {
         super(stream);
     }
 
     /**
-     * @see BasicReporter
+     * @see BasicReporter#BasicReporter(OutputStream, OutputVerbosity)
      */
     public ErrorReporter(OutputStream stream, OutputVerbosity verbosity) {
         super(stream, verbosity);

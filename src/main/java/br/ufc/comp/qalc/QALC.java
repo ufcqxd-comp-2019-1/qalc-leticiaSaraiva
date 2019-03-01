@@ -92,6 +92,7 @@ public class QALC {
         CommandLine cmd = new CommandLine(qalc);
 
         try {
+            // Reconhecimento dos parâmetros de linha de comando.
             cmd.setOverwrittenOptionsAllowed(true);
             cmd.parse(args);
             if (cmd.isUsageHelpRequested()) {
@@ -132,6 +133,7 @@ public class QALC {
                     // Fase de Análise Léxica deve ser executada
                     // TODO Executar análise léxica
                 }
+                // TODO Verificar e executar demais fases
 
                 // <----
             }
