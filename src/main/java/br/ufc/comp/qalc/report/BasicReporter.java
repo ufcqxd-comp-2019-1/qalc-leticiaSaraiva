@@ -1,7 +1,6 @@
 package br.ufc.comp.qalc.report;
 
 import br.ufc.comp.qalc.OutputVerbosity;
-import br.ufc.comp.qalc.report.MessageConsumer;
 import br.ufc.comp.qalc.report.messages.Message;
 
 import java.io.IOException;
@@ -57,7 +56,7 @@ public class BasicReporter implements MessageConsumer {
         try {
             output.write(String.format(
                     "[%s](%s): %s\n",
-                    message.getType(),
+                    message.getCategory(),
                     message.getClass().getSimpleName(),
                     message.getContent()
             ));

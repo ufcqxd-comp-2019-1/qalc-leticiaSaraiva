@@ -2,13 +2,14 @@ package br.ufc.comp.qalc.report;
 
 import br.ufc.comp.qalc.OutputVerbosity;
 import br.ufc.comp.qalc.report.messages.Message;
+import br.ufc.comp.qalc.report.messages.MessageCategory;
 
 import java.io.OutputStream;
 
 /**
  * Classe especializada no relato de mensagens de erro.
  *
- * @see br.ufc.comp.qalc.report.messages.MessageType#ERROR
+ * @see MessageCategory#ERROR
  */
 public class ErrorReporter extends BasicReporter {
     /**

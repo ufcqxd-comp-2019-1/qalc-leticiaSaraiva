@@ -10,27 +10,27 @@ package br.ufc.comp.qalc.report.messages;
  * as que os observaram.
  */
 public class Message {
-    protected final MessageType type;
+    protected final MessageCategory category;
     protected final String content;
 
     /**
-     * Constrói uma mensagem especificando o tipo e o conteúdo textual.
+     * Constrói uma mensagem especificando a categoria e o conteúdo textual.
      *
-     * @param type Tipo de evento que originou a mensagem.
+     * @param category Categoria de evento que originou a mensagem.
      * @param content Conteúdo textual associado à mensagem.
      */
-    public Message(MessageType type, String content){
-        this.type = type;
+    public Message(MessageCategory category, String content){
+        this.category = category;
         this.content = content;
     }
 
     /**
-     * Obtém o tipo de evento que originou a mensagem.
+     * Obtém a categoria de evento que originou a mensagem.
      *
      * @return Tipo da mensagem.
      */
-    public MessageType getType() {
-        return type;
+    public MessageCategory getCategory() {
+        return category;
     }
 
     /**

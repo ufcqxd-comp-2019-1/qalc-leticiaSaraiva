@@ -1,10 +1,10 @@
 package br.ufc.comp.qalc.report.messages;
 
 /**
- * Representa os possíveis tipos de evento que podem originar mensagens
+ * Representa as possíveis categorias de eventos que podem originar mensagens
  * dentro do interpretador.
  */
-public enum MessageType {
+public enum MessageCategory {
     /** Notas ao usuário. Representam observações não-críticas. */
     NOTE,
     /** Avisos ao usuário. Representam observações que podem afetar a interpretação da entrada. */

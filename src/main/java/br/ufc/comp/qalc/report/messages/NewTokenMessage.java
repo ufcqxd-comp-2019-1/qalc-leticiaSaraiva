@@ -19,7 +19,7 @@ public class NewTokenMessage extends Message {
      * @param newToken Token reconhecido.
      */
     public NewTokenMessage(Token newToken) {
-        super(MessageType.SCANNING, null);
+        super(MessageCategory.SCANNING, null);
 
         this.token = newToken;
     }

@@ -1,7 +1,7 @@
 package br.ufc.comp.qalc.report;
 
 import br.ufc.comp.qalc.report.messages.Message;
-import br.ufc.comp.qalc.report.messages.MessageType;
+import br.ufc.comp.qalc.report.messages.MessageCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public final class MessageCenter {
      * Armazena todos os consumidores registrados, categorizados pelo
      * tipo de mensagem que eles alegam poder processar.
      */
-    private static HashMap<MessageType, List<MessageConsumer>> mapping;
+    private static HashMap<MessageCategory, List<MessageConsumer>> mapping;
 
     static {
         mapping = new HashMap<>();
@@ -35,16 +35,16 @@ public final class MessageCenter {
      * Método a ser chamado para registrar um relator capaz de processar mensagens
      * de um tipo específico.
      *
-     * @param type     Tipo de mensagem que o consumidor pode processar.
+     * @param category Categoria de mensagem que o consumidor pode processar.
      * @param consumer Consumidor a ser registrado.
      */
-    public static void registerConsumerFor(MessageType type, MessageConsumer consumer) {
-        List<MessageConsumer> list = mapping.get(type);
+    public static void registerConsumerFor(MessageCategory category, MessageConsumer consumer) {
+        List<MessageConsumer> list = mapping.get(category);
 
         if(list == null) {
             list = new ArrayList<>();
             list.add(consumer);
-            mapping.put(type, list);
+            mapping.put(category, list);
         } else {
             list.add(consumer);
         }
@@ -57,7 +57,7 @@ public final class MessageCenter {
      * @param message Mensagem a ser enviada.
      */
     public static void deliver(Message message) {
-        List<MessageConsumer> list = mapping.get(message.getType());
+        List<MessageConsumer> list = mapping.get(message.getCategory());
 
         for (MessageConsumer consumer : list) {
             consumer.consume(message);
