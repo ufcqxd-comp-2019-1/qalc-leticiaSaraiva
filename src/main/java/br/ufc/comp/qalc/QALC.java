@@ -13,10 +13,11 @@ import java.io.OutputStream;
 /**
  * Classe principal do interpretador.
  *
- * Contém a função {@link QALC.main} e as definições de interpretação
+ * Contém a função {@link QALC#main(String[])} e as definições de interpretação
  * dos parâmetros de execução.
  */
 @CommandLine.Command(
+        versionProvider = VersionProvider.class,
         description = "Interpretador para a linguagem QALC.",
         headerHeading = "Uso:%n",
         synopsisHeading = "\t",
