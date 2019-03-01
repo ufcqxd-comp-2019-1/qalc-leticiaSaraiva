@@ -9,7 +9,7 @@ import br.ufc.comp.qalc.frontend.token.Token;
  */
 public class NewTokenMessage extends Message {
 
-    protected Token token;
+    protected final Token token;
 
     /**
      * Constrói uma mensagem informando o token que foi reconhecido.

@@ -10,8 +10,8 @@ package br.ufc.comp.qalc.report.messages;
  * as que os observaram.
  */
 public class Message {
-    protected MessageType type;
-    protected String content;
+    protected final MessageType type;
+    protected final String content;
 
     /**
      * Constrói uma mensagem especificando o tipo e o conteúdo textual.
