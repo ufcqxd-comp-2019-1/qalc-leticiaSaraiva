@@ -1,5 +1,6 @@
 package br.ufc.comp.qalc.report;
 
+import br.ufc.comp.qalc.OutputVerbosity;
 import br.ufc.comp.qalc.report.MessageConsumer;
 import br.ufc.comp.qalc.report.messages.Message;
 
@@ -18,14 +19,29 @@ import java.io.OutputStreamWriter;
 public class BasicReporter implements MessageConsumer {
 
     protected OutputStreamWriter output;
+    protected OutputVerbosity verbosity;
 
     /**
-     * Cria um relator cujas mensagens serão direcionadas à {@code stream} informada.
+     * Cria um relator cujas mensagens serão direcionadas à {@code stream} informada,
+     * com nível de verbosidade mínimo.
      *
      * @param stream Fluxo de saída a ser usado.
      */
     public BasicReporter(OutputStream stream) {
         this.output = new OutputStreamWriter(stream);
+        this.verbosity = OutputVerbosity.ESSENTIAL;
+    }
+
+    /**
+     * Cria um relator cujas mensagens serão direcionadas à {@code stream} informada,
+     * com nível de verbosidade informado.
+     *
+     * @param stream    Fluxo de saída a ser usado.
+     * @param verbosity Nível de verbosidade na saída gerada.
+     */
+    public BasicReporter(OutputStream stream, OutputVerbosity verbosity) {
+        this.output = new OutputStreamWriter(stream);
+        this.verbosity = verbosity;
     }
 
     /**
