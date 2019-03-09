@@ -62,22 +62,7 @@ public class Scanner {
 
             return new NumberToken(currentLine, lexemeStart, stringValue);
 
-        } else if(source.getCurrentChar() == '$'){  // VariableIdentifierToken
-            StringBuilder lexema = new StringBuilder();
-
-            long currentLine = source.getCurrentLine();
-            long lexemeStart = source.getCurrentColumn();
-
-            do{
-                lexema.append(source.getCurrentChar());
-                source.advance();
-            }while(Character.isLetter(source.getCurrentChar()));
-
-            String stringValue = lexema.toString();
-
-            return new VariableIdentifierToken(currentLine, lexemeStart, stringValue);
-
-        } else if(source.getCurrentChar() == '@'){ //FunctionIdentifierToken
+        }else if(source.getCurrentChar() == '@'){ //FunctionIdentifierToken
             StringBuilder lexema = new StringBuilder();
 
             long currentLine = source.getCurrentLine();
@@ -92,7 +77,25 @@ public class Scanner {
 
             return new FunctionIdentifierToken(currentLine, lexemeStart, stringValue);
 
-        }else if(source.getCurrentChar() == '$'){ //ResultIdentifierToken
+        }
+        /*
+        else if(source.getCurrentChar() == '$' && Character.isLetter(source.getCurrentChar()+1)){  // VariableIdentifierToken
+            StringBuilder lexema = new StringBuilder();
+
+            long currentLine = source.getCurrentLine();
+            long lexemeStart = source.getCurrentColumn();
+
+            do{
+                lexema.append(source.getCurrentChar());
+                source.advance();
+            }while(Character.isLetter(source.getCurrentChar()));
+
+            String stringValue = lexema.toString();
+
+            return new VariableIdentifierToken(currentLine, lexemeStart, stringValue);
+
+        }
+        else if(source.getCurrentChar() == '$'){ //ResultIdentifierToken
             StringBuilder lexema = new StringBuilder();
 
             long currentLine = source.getCurrentLine();
@@ -108,6 +111,40 @@ public class Scanner {
             return new ResultIdentifierToken(currentLine, lexemeStart, stringValue);
 
         }
+        */
+        else if(source.getCurrentChar() == '$'){
+            source.advance();
+            StringBuilder lexema = new StringBuilder();
+
+            long currentLine = source.getCurrentLine();
+            long lexemeStart = source.getCurrentColumn();
+
+            if(Character.isLetter(source.getCurrentChar())){    //VariableIdentifierToken
+                do{
+                    lexema.append(source.getCurrentChar());
+                    source.advance();
+                }while(Character.isLetter(source.getCurrentChar()));
+
+                String stringValue = lexema.toString();
+
+                return new VariableIdentifierToken(currentLine, lexemeStart, stringValue);
+
+            }else{                                              //ResultIdentifierToken
+                do{
+                    lexema.append(source.getCurrentChar());
+                    source.advance();
+                }while(Character.isDigit(source.getCurrentChar()) || source.getCurrentChar() == '?');
+
+                String stringValue = lexema.toString();
+
+                return new ResultIdentifierToken(currentLine, lexemeStart, stringValue);
+            }
+
+        }
+
+
+
+
         // TODO Recuperação de erros.
 
         return null;
