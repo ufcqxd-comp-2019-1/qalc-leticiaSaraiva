@@ -116,6 +116,7 @@ public class QALC {
                         break;
                     case PARSER:
                         // TODO
+                        
                         break;
                     case SEMANTIC:
                         // TODO
