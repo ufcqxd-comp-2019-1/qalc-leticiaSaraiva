@@ -114,13 +114,11 @@ public class Scanner {
                     String stringValue = lexema.toString();
                     return new ResultIdentifierToken(currentLine, lexemeStart, stringValue);
                 }else {
-                    Boolean isZero = false;
+                    int isZero = 0; //Contador para os números 0's
 
                     do {
                         if (source.getCurrentChar() == '0') {
-                            isZero = true;
-                        } else {
-                            isZero = false;
+                            isZero++;
                         }
                         lexema.append(source.getCurrentChar());
                         source.advance();
@@ -128,7 +126,7 @@ public class Scanner {
 
                     String stringValue = lexema.toString();
 
-                    if (isZero == false) { //Se ele não for formado apenas por zeros (0's)
+                    if (isZero != stringValue.length()) { //Se ele não for formado apenas por zeros (0's)
                         return new ResultIdentifierToken(currentLine, lexemeStart, stringValue);
                     }
                 }
