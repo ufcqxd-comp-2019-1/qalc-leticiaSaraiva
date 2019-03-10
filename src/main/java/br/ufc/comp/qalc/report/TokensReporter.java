@@ -52,7 +52,10 @@ public class TokensReporter extends BasicReporter {
             try {
                 // TODO Alterar para aumentar as informações de acordo com a variável `verbosity`.
                 //      (Ver Javadoc desta função.)
-                output.write(String.format("(%s)\n", ((NewTokenMessage) message).getToken().getTokenIdentifier()));
+                if(verbosity == OutputVerbosity.ESSENTIAL){
+                    output.write(String.format("(%s)\n", ((NewTokenMessage) message).getToken().getTokenIdentifier()));
+                }
+
             } catch (IOException e) {
                 reportFailure(e);
             }
