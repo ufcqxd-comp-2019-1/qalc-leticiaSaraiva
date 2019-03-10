@@ -52,8 +52,22 @@ public class TokensReporter extends BasicReporter {
             try {
                 // TODO Alterar para aumentar as informações de acordo com a variável `verbosity`.
                 //      (Ver Javadoc desta função.)
-                if(verbosity == OutputVerbosity.ESSENTIAL){
-                    output.write(String.format("(%s)\n", ((NewTokenMessage) message).getToken().getTokenIdentifier()));
+                if(verbosity.ordinal() == OutputVerbosity.ESSENTIAL.ordinal()){ //Informações essenciais
+                    output.write(String.format("(%s)\n",
+                            ((NewTokenMessage) message).getToken().getTokenIdentifier()));
+
+                }else if(verbosity.ordinal() == OutputVerbosity.ADDITIONAL_INFO.ordinal()){ //Informações adicionais
+                    output.write(String.format("(%s, %s)\n",
+                            ((NewTokenMessage) message).getToken().getTokenIdentifier(),
+                            ((NewTokenMessage) message).getToken().toString()));
+
+                }else if(verbosity.ordinal() == OutputVerbosity.EVERYTHING.ordinal()){ //Todas as informações
+                    output.write(String.format("(%s, %s, Linha: %d, Colunas(inicio-fim): %d-%d)\n",
+                            ((NewTokenMessage) message).getToken().getTokenIdentifier(),
+                            ((NewTokenMessage) message).getToken().toString(),
+                            ((NewTokenMessage) message).getToken().getLineNumber(),
+                            ((NewTokenMessage) message).getToken().getColumnStart(),
+                            ((NewTokenMessage) message).getToken().getColumnEnd()));
                 }
 
             } catch (IOException e) {

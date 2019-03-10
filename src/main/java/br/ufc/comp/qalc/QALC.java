@@ -134,6 +134,8 @@ public class QALC {
                 if (qalc.stopAt.ordinal() >= InterpreterPass.LEXER.ordinal()) {
                     // Fase de Análise Léxica deve ser executada
                     // TODO Executar análise léxica
+
+
                 }
                 // TODO Verificar e executar demais fases
 
