@@ -62,7 +62,7 @@ public class TokensReporter extends BasicReporter {
                             ((NewTokenMessage) message).getToken().toString()));
 
                 }else if(verbosity.ordinal() == OutputVerbosity.EVERYTHING.ordinal()){ //Todas as informações
-                    output.write(String.format("(%s, %s, Linha: %d, Colunas(inicio-fim): %d-%d)\n",
+                    output.write(String.format("(%s, %s, L: %d, C: %d-%d)\n",
                             ((NewTokenMessage) message).getToken().getTokenIdentifier(),
                             ((NewTokenMessage) message).getToken().toString(),
                             ((NewTokenMessage) message).getToken().getLineNumber(),

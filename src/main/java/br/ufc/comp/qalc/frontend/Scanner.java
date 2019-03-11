@@ -273,7 +273,7 @@ public class Scanner {
             do{
                 lexema.append(source.getCurrentChar());
                 source.advance();
-            }while(source.getCurrentChar() != '\n' );
+            }while(source.getCurrentChar() != '\n');
 
             String stringValue = lexema.toString();
 
@@ -285,8 +285,8 @@ public class Scanner {
             long currentLine = source.getCurrentLine();
             long lexemeStart = source.getCurrentColumn();
 
-            lexema.append(source.getCurrentChar()); //Adiciona apenas um espaço em branco
             do{
+                lexema.append(source.getCurrentChar());
                 source.advance();
             }while(Character.isWhitespace(source.getCurrentChar()));
 
@@ -297,6 +297,36 @@ public class Scanner {
         }
 
         // TODO Recuperação de erros.
+        else{                                           //ErrorToken
+            StringBuilder lexema = new StringBuilder();
+
+            long currentLine = source.getCurrentLine();
+            long lexemeStart = source.getCurrentColumn();
+
+            do{
+                lexema.append(source.getCurrentChar());
+                source.advance();
+            }while( source.getCurrentChar() != '+' &&       //Enquanto o caractere for diferente de algum token aceito
+                    source.getCurrentChar() != '-' &&
+                    source.getCurrentChar() != '*' &&
+                    source.getCurrentChar() != '/' &&
+                    source.getCurrentChar() != '%' &&
+                    source.getCurrentChar() != '^' &&
+                    source.getCurrentChar() != '=' &&
+                    source.getCurrentChar() != '$' &&
+                    source.getCurrentChar() != '@' &&
+                    source.getCurrentChar() != '(' &&
+                    source.getCurrentChar() != ')' &&
+                    source.getCurrentChar() != ',' &&
+                    source.getCurrentChar() != ';' &&
+                    source.getCurrentChar() != '#' &&
+                    !Character.isWhitespace(source.getCurrentChar()) &&
+                    !Character.isDigit(source.getCurrentChar()));
+
+            String stringValue = lexema.toString();
+
+            return new ErrorToken(currentLine, lexemeStart, stringValue);
+        }
 
 
         return null;

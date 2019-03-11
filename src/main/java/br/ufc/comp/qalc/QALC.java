@@ -1,14 +1,15 @@
 package br.ufc.comp.qalc;
 
+import br.ufc.comp.qalc.frontend.Scanner;
+import br.ufc.comp.qalc.frontend.Source;
+import br.ufc.comp.qalc.frontend.token.EOFToken;
 import br.ufc.comp.qalc.report.MessageCenter;
 import br.ufc.comp.qalc.report.TokensReporter;
 import br.ufc.comp.qalc.report.messages.MessageCategory;
+import br.ufc.comp.qalc.report.messages.NewTokenMessage;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Classe principal do interpretador.
@@ -103,7 +104,7 @@ public class QALC {
             } else {
                 // Alterar esta porção do código
                 // ---->
-
+                InputStream inputToStream = qalc.readFrom == null ? System.in : new FileInputStream(qalc.readFrom);
                 OutputStream outputToStream = qalc.outputTo == null ? System.out : new FileOutputStream(qalc.outputTo);
 
                 // WARNING: Apenas a última fase deve gerar saída.
@@ -111,8 +112,19 @@ public class QALC {
                     case LEXER:
                         MessageCenter.registerConsumerFor(
                                 MessageCategory.SCANNING,
-                                new TokensReporter(outputToStream, qalc.outputVerbosity)
-                        );
+                                new TokensReporter(outputToStream, qalc.outputVerbosity));
+
+                        Scanner scannerInput = new Scanner(new Source(inputToStream));
+                        NewTokenMessage MsgToken = new NewTokenMessage(scannerInput.getNextToken());
+
+                        while(MsgToken.getToken().getTokenIdentifier() != "%EOF%"){
+
+                            if(MsgToken.getToken().getTokenIdentifier() != "WHITE" && MsgToken.getToken().getTokenIdentifier() != "COM"){
+                                MessageCenter.deliver(MsgToken);
+                            }
+
+                            MsgToken = new NewTokenMessage(scannerInput.getNextToken());
+                        }
                         break;
                     case PARSER:
                         // TODO
@@ -120,9 +132,11 @@ public class QALC {
                         break;
                     case SEMANTIC:
                         // TODO
+
                         break;
                     case RUNNER:
                         // TODO
+
                         break;
                 }
 

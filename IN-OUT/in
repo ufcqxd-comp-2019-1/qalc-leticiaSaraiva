@@ -1,0 +1,4 @@
+$x = @sqrt(2); #comentario
+$y = @log(1024, 2);
+&x$fun = 4;
+#comentario2
