@@ -1,0 +1,5 @@
+$ZERO = $nao + $declarada * $ainda;
+@tres($um, $dois) = $ZERO*$um + $ZERO/$dois + 3.000000 ^ 1.00000; # Funcao
+# Variavel
+$TRES = @tres($1 + $? % 1, $? - $1 * $ZERO) % (1 + 1.0 + 1.0000000000);
+#$quatro = 4.0000000000 # Comentado

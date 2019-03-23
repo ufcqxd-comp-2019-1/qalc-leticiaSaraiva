@@ -113,18 +113,6 @@ public class QALC {
                         MessageCenter.registerConsumerFor(
                                 MessageCategory.SCANNING,
                                 new TokensReporter(outputToStream, qalc.outputVerbosity));
-
-                        Scanner scannerInput = new Scanner(new Source(inputToStream));
-                        NewTokenMessage MsgToken = new NewTokenMessage(scannerInput.getNextToken());
-
-                        while(MsgToken.getToken().getTokenIdentifier() != "%EOF%"){
-
-                            if(MsgToken.getToken().getTokenIdentifier() != "WHITE" && MsgToken.getToken().getTokenIdentifier() != "COM"){
-                                MessageCenter.deliver(MsgToken);
-                            }
-
-                            MsgToken = new NewTokenMessage(scannerInput.getNextToken());
-                        }
                         break;
                     case PARSER:
                         // TODO
@@ -148,10 +136,29 @@ public class QALC {
                 if (qalc.stopAt.ordinal() >= InterpreterPass.LEXER.ordinal()) {
                     // Fase de Análise Léxica deve ser executada
                     // TODO Executar análise léxica
+                    Scanner scannerInput = new Scanner(new Source(inputToStream));
+                    NewTokenMessage MsgToken = new NewTokenMessage(scannerInput.getNextToken());
 
+                    while(MsgToken.getToken().getTokenIdentifier() != "%EOF%"){
+
+                        if(MsgToken.getToken().getTokenIdentifier() != "WHITE" && MsgToken.getToken().getTokenIdentifier() != "COM"){
+                            MessageCenter.deliver(MsgToken);
+                        }
+
+                        MsgToken = new NewTokenMessage(scannerInput.getNextToken());
+                    }
 
                 }
                 // TODO Verificar e executar demais fases
+                else if(qalc.stopAt.ordinal() >= InterpreterPass.PARSER.ordinal()){
+                    // Fase de Análise Sintática
+
+                }else if(qalc.stopAt.ordinal() >= InterpreterPass.SEMANTIC.ordinal()){
+                    // Fase de Análise Semântica
+
+                }else if(qalc.stopAt.ordinal() >= InterpreterPass.RUNNER.ordinal()){
+                    // Fase de execução
+                }
 
                 // TODO Retornar código de erro correspondente às falhas que ocorrerem, via `System.exit(...)`;
 
