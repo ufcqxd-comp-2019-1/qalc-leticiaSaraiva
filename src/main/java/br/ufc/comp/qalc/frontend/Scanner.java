@@ -17,6 +17,7 @@ public class Scanner {
     /**
      * Último token reconhecido.
      */
+    //Scanner
     protected Token currentToken;
     /**
      * Fonte de caracteres de onde extrair os tokens.
